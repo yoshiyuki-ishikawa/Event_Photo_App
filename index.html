@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="theme-color" content="#000000">
+    <title>Instant Event Cam</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="app">
+        <!-- Error Message Overlay -->
+        <div id="error-overlay" class="hidden">
+            <div class="error-content">
+                <p id="error-message">カメラへのアクセスを許可してください。</p>
+                <button id="retry-btn">再読み込み</button>
+            </div>
+        </div>
+
+        <!-- Camera View -->
+        <div id="camera-container">
+            <video id="camera-feed" autoplay playsinline muted></video>
+            <img id="frame-overlay" src="assets/frames/frame1.png" alt="Frame">
+            <canvas id="capture-canvas"></canvas>
+            
+            <!-- Tap to switch hint (optional, fades out) -->
+            <div id="tap-hint" class="fade-out">TAP TO SWITCH FRAME</div>
+        </div>
+
+        <!-- Main UI Controls -->
+        <div id="ui-layer">
+            <button id="switch-camera-btn" aria-label="Switch Camera">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M20 5H9l-1-2H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2z"></path>
+                    <path d="M12 10a2 2 0 1 0 0 4 2 2 0 0 0 0-4z"></path>
+                </svg>
+            </button>
+            
+            <button id="shutter-btn" aria-label="Take Photo"></button>
+        </div>
+
+        <!-- Preview Modal -->
+        <div id="preview-modal" class="hidden">
+            <div class="preview-content">
+                <img id="preview-image" alt="Captured Photo">
+                <div class="preview-actions">
+                    <p class="save-hint">画像を長押しして保存</p>
+                    <button id="retake-btn">撮り直す</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>
